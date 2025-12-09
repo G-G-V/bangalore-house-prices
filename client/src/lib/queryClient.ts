@@ -7,22 +7,40 @@ async function throwIfResNotOk(res: Response) {
   }
 }
 
-export async function apiRequest<T = any>(
-  url: string,
-  options?: RequestInit
-): Promise<T> {
-  const res = await fetch(url, {
-    ...options,
+// export async function apiRequest<T = any>(
+//   url: string,
+//   options?: RequestInit
+// ): Promise<T> {
+//   const res = await fetch(url, {
+//     ...options,
+//     headers: {
+//       ...(options?.headers || {}),
+//       "Content-Type": "application/json",
+//     },
+//     credentials: "include",
+//   });
+
+//   await throwIfResNotOk(res);
+//   return res.json();
+// }
+
+             //new-1
+export async function apiRequest<T>(url: string, options: RequestInit = {}): Promise<T> {
+  const res = await fetch(`http://localhost:5000${url}`, {
     headers: {
-      ...(options?.headers || {}),
       "Content-Type": "application/json",
     },
-    credentials: "include",
+    ...options,
   });
 
-  await throwIfResNotOk(res);
-  return res.json();
+  if (!res.ok) throw new Error("API request failed");
+
+  return res.json() as Promise<T>;
 }
+
+
+
+
 
 type UnauthorizedBehavior = "returnNull" | "throw";
 export const getQueryFn: <T>(options: {

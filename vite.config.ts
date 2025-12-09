@@ -8,6 +8,18 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+
+// // vite.config.ts
+// export default defineeConfig({
+//   server: {
+//     proxy: {
+//       "/api": "http://localhost:5000",
+//     },
+//   },
+// });
+
+
+
 export default defineConfig({
   plugins: [
     react(),
@@ -25,6 +37,10 @@ export default defineConfig({
   server: {
     port: 5173,
     strictPort: true, // This will fail if port 5173 is not available
+
+        proxy: {                     //new-1
+      "/api": "http://localhost:5000",
+    },
   },
   resolve: {
     alias: {
@@ -37,5 +53,10 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
+  },
+
+
+
+  
   },
 });
