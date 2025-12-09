@@ -8,7 +8,6 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-
 // // vite.config.ts
 // export default defineeConfig({
 //   server: {
@@ -17,8 +16,6 @@ const __dirname = dirname(__filename);
 //     },
 //   },
 // });
-
-
 
 export default defineConfig({
   plugins: [
@@ -29,7 +26,7 @@ export default defineConfig({
     process.env.REPL_ID !== undefined
       ? [
           await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
+            m.cartographer()
           ),
         ]
       : []),
@@ -38,7 +35,8 @@ export default defineConfig({
     port: 5173,
     strictPort: true, // This will fail if port 5173 is not available
 
-        proxy: {                     //new-1
+    proxy: {
+      //new-1
       "/api": "http://localhost:5000",
     },
   },
@@ -53,10 +51,5 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
-  },
-
-
-
-  
   },
 });

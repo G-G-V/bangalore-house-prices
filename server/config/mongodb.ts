@@ -1,6 +1,12 @@
 import { MongoClient } from 'mongodb';
 
-const uri = process.env.MONGODB_URI || 'mongodb+srv://ironman1:ironman1@cluster0.2h7thiz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+// const uri = process.env.MONGODB_URI || 'mongodb+srv://ironman1:ironman1@cluster0.2h7thiz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
+//
+const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/bhpdb';
+//
+
+
 const client = new MongoClient(uri);
 
 export const connectToDatabase = async () => {
